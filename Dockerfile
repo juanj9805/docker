@@ -6,13 +6,13 @@ WORKDIR /app
 
 # Copiar csproj y restaurar dependencias
 COPY *.csproj ./
-RUN dotnet restore
+RUN dotnet restore vps.csproj
 
 # Copiar todo el código
 COPY . ./
 
 # Publicar la aplicación
-RUN dotnet publish -c Release -o /out
+RUN dotnet publish vps.csproj -c Release -o /out
 
 # Etapa 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
