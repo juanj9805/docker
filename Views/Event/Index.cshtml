@@ -1,1 +1,37 @@
-﻿<h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias, corporis eaque, id maiores modi nisi quibusdam quidem quisquam recusandae similique, voluptatum? Animi autem facilis, inventore laboriosam mollitia recusandae ullam?</h1>
+﻿@model IEnumerable<vps.Models.Event.Event>
+
+<div class="row">
+    <button class="btn btn-success" asp-action="Create" asp-controller="Event">Create</button>
+    
+    <div class="col-12">
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var ev in Model)
+            {
+                <tr>
+                    <td>@ev.Id</td>
+                    <td>@ev.Title</td>
+                    <td>@ev.Description</td>
+                    <td>@ev.Location</td>
+                    <td>@ev.Status</td>
+                    <td>
+                        <a class="btn btn-primary" href="">Show</a>
+                        <a class="btn btn-warning" href="">Edit</a>
+                        <a class="btn btn-danger" href="">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
