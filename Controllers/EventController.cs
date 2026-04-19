@@ -29,6 +29,7 @@ public class EventController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CreateEventDto ev)
     {
+        if (!ModelState.IsValid) return View(ev);
         var newEvent = new Event
         {
             Title = ev.Title,
@@ -37,8 +38,6 @@ public class EventController : Controller
             Location = ev.Location,
             Status = ev.Status,
         };
-        
-        if (!ModelState.IsValid) return View(ev);
         
         await _context.AddAsync(newEvent);
         await _context.SaveChangesAsync();
