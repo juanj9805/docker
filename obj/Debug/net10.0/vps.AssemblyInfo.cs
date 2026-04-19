@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("vps")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbb89591f48cb55d8b937b15f884a7a2b3320072")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45666fd8314f11124451f175c3654ab15a1653b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("vps")]
 [assembly: System.Reflection.AssemblyTitleAttribute("vps")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

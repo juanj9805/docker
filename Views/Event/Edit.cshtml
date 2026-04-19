@@ -1,3 +1,5 @@
+@model vps.Models.Event.EditEventDto;
+
 <h1>Edit</h1>
 
 <div class="row d-flex justify-content-center">
@@ -6,19 +8,23 @@
             <div class="my-2"></div>
             <div class="my-2">
                 <label class="form-label" for="">Title</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" placeholder="@Model.Title">
+            </div>
+            <div class="my-2">
+                <label class="form-label" for="">Img</label>
+                <input class="form-control" type="text" placeholder="@Model.Img">
             </div>
             <div class="my-2">
                 <label class="form-label" for="">Description</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" placeholder="@Model.Description">
             </div>
             <div class="my-2">
                 <label class="form-label" for="">Location</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" placeholder="@Model.Location">
             </div>
             <div class="my-2">
                 <label class="form-label" for="">Status</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" placeholder="@Model.Status">
             </div>
             <button class="btn btn-success">Add new event</button>
         </form>

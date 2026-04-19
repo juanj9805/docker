@@ -47,8 +47,17 @@ public class EventController : Controller
     public async Task<IActionResult> Edit(int id)
     {
         var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
+        var dto = new EditEventDto
+        {
+            Title = found.Title,
+            Img = found.Img,
+            Description = found.Description,
+            Location = found.Location,
+            Status = found.Status,
+        };
+        
         if (found == null) return NotFound();
-        return View(found);
+        return View(dto);
     } 
     
     [HttpPost]
