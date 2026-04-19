@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using vps.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using vps.Data;
 using vps.Models.Event;
@@ -22,39 +20,64 @@ public class EventController : Controller
         return View(events);
     }
     
-    public IActionResult Details()
-    {
-        return View();
-    }
-        
     [HttpGet]
     public IActionResult Create()
     {
-        
         return View();
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(Event ev)
+    public async Task<IActionResult> Create(CreateEventDto ev)
     {
-        _context.AddAsync(ev);
+        var newEvent = new Event
+        {
+            Title = ev.Title,
+            Img = ev.Img,
+            Description = ev.Description,
+            Location = ev.Location,
+            Status = ev.Status,
+        };
+        
+        if (!ModelState.IsValid) return View(ev);
+        
+        await _context.AddAsync(newEvent);
         await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
     [HttpGet]
-    public IActionResult Edit(int Id)
+    public async Task<IActionResult> Edit(int id)
     {
-        return View();
+        var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
+        if (found == null) return NotFound();
+        return View(found);
     } 
+    
     [HttpPost]
-    public async Task<IActionResult> Edit(Event ev)
+    public async Task<IActionResult> Edit(EditEventDto ev, int id)
     {
+        var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
+
+        if (found == null) return NotFound();
+
+        if (!ModelState.IsValid) return View(ev);
         
-        return View();
+        found.Title = ev.Title;
+        found.Img = ev.Img;
+        found.Description = ev.Description;
+        found.Location = ev.Location;
+        found.Status = ev.Status;
+        
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
     } 
+    
     [HttpPost]
-    public async Task<IActionResult> Delete()
+    public async Task<IActionResult> Delete(int id)
     {
-        return View();
+        var find = await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
+        if (find == null) return NotFound();
+        _context.Events.Remove(find);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
     } 
 }
