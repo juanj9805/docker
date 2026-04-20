@@ -299,7 +299,6 @@ C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\scopedcss\bundle\vps.styles.css
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\scopedcss\projectbundle\vps.bundle.scp.css
-C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\compressed\r08yn16q7w-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\compressed\x4y1yenqoh-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\compressed\f7z25hfjfd-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\compressed\72svndjuc7-{0}-t1cqhe9u97-t1cqhe9u97.gz
@@ -374,3 +373,4 @@ C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\refint\vps.dll
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\vps.pdb
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\vps.genruntimeconfig.cache
 C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\ref\vps.dll
+C:\Users\JUAN JOSE\Desktop\docker\obj\Debug\net10.0\compressed\r08yn16q7w-{0}-w5skjprzlr-w5skjprzlr.gz

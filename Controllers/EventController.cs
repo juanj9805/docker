@@ -14,9 +14,9 @@ public class EventController : Controller
     }
     
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(CancellationToken ct)
     {
-        var events = await _context.Events.ToListAsync();
+        var events = await _context.Events.ToListAsync(ct);
         return View(events);
     }
     
@@ -27,7 +27,7 @@ public class EventController : Controller
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create(CreateEventDto ev)
+    public async Task<IActionResult> Create(CreateEventDto ev, CancellationToken ct)
     {
         if (!ModelState.IsValid) return View(ev);
         var newEvent = new Event
@@ -39,16 +39,18 @@ public class EventController : Controller
             Status = ev.Status,
         };
         
-        await _context.AddAsync(newEvent);
-        await _context.SaveChangesAsync();
+        await _context.AddAsync(newEvent, ct);
+        await _context.SaveChangesAsync(ct);
         return RedirectToAction("Index");
     }
     [HttpGet]
-    public async Task<IActionResult> Edit(int id)
+    public async Task<IActionResult> Edit(int id, CancellationToken ct)
     {
-        var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
+        var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id, ct);
+        if (found == null) return NotFound();
         var dto = new EditEventDto
         {
+            Id = found.Id,
             Title = found.Title,
             Img = found.Img,
             Description = found.Description,
@@ -56,18 +58,15 @@ public class EventController : Controller
             Status = found.Status,
         };
         
-        if (found == null) return NotFound();
         return View(dto);
     } 
     
     [HttpPost]
-    public async Task<IActionResult> Edit(EditEventDto ev, int id)
+    public async Task<IActionResult> Edit(EditEventDto ev, int id, CancellationToken ct)
     {
-        var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
-
-        if (found == null) return NotFound();
-
         if (!ModelState.IsValid) return View(ev);
+        var found =  await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id, ct);
+        if (found == null) return NotFound();
         
         found.Title = ev.Title;
         found.Img = ev.Img;
@@ -75,17 +74,17 @@ public class EventController : Controller
         found.Location = ev.Location;
         found.Status = ev.Status;
         
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(ct);
         return RedirectToAction("Index");
     } 
     
     [HttpPost]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {
-        var find = await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id);
+        var find = await _context.Events.FirstOrDefaultAsync(ev => ev.Id == id, ct);
         if (find == null) return NotFound();
         _context.Events.Remove(find);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(ct);
         return RedirectToAction("Index");
     } 
 }

@@ -1,32 +1,70 @@
-@model vps.Models.Event.EditEventDto;
+@using vps.Models.Event
+@model vps.Models.Event.EditEventDto
 
-<h1>Edit</h1>
+@{ViewData["Title"] = "Edit Event";}
 
-<div class="row d-flex justify-content-center">
-    <div class="col-4">
-        <form class="form-control my-5" action="">
-            <div class="my-2"></div>
-            <div class="my-2">
-                <label class="form-label" for="">Title</label>
-                <input class="form-control" type="text" placeholder="@Model.Title">
-            </div>
-            <div class="my-2">
-                <label class="form-label" for="">Img</label>
-                <input class="form-control" type="text" placeholder="@Model.Img">
-            </div>
-            <div class="my-2">
-                <label class="form-label" for="">Description</label>
-                <input class="form-control" type="text" placeholder="@Model.Description">
-            </div>
-            <div class="my-2">
-                <label class="form-label" for="">Location</label>
-                <input class="form-control" type="text" placeholder="@Model.Location">
-            </div>
-            <div class="my-2">
-                <label class="form-label" for="">Status</label>
-                <input class="form-control" type="text" placeholder="@Model.Status">
-            </div>
-            <button class="btn btn-success">Add new event</button>
-        </form>
+<div class="py-4 mb-4 rounded-3" style="background-color: #1B4332;">
+    <div class="px-4">
+        <h2 class="fw-bold text-white mb-0">
+            <i class="bi bi-pencil-square me-2" style="color: #52B788;"></i>Edit Event
+        </h2>
+        <p class="text-white-50 mb-0 small">Updating: <strong>@Model.Title</strong></p>
     </div>
 </div>
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-7 col-xl-6">
+        <div class="card border-0 shadow" style="border-top: 4px solid #1B4332 !important;">
+            <div class="card-body p-4 p-md-5">
+
+                <form asp-action="Edit" asp-controller="Event" method="post" asp-route-id="@Model.Id">
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold" style="color: #1B4332;">Title</label>
+                        <input asp-for="Title" class="form-control" type="text">
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Img" class="form-label fw-semibold" style="color: #1B4332;">Image URL</label>
+                        <input asp-for="Img" class="form-control" type="text">
+                        <div class="form-text" style="color: #6B4226;">Paste a direct link to an image representing this event.</div>
+                        <span asp-validation-for="Img" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-semibold" style="color: #1B4332;">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Location" class="form-label fw-semibold" style="color: #1B4332;">Location</label>
+                        <input asp-for="Location" class="form-control" type="text">
+                        <span asp-validation-for="Location" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Status" class="form-label fw-semibold" style="color: #1B4332;">Status</label>
+                        <select asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()" class="form-select"></select>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a asp-action="Index" asp-controller="Event" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i> Back to Events
+                        </a>
+                        <button type="submit" class="btn fw-semibold text-white"
+                                style="background-color: #1B4332;">
+                            <i class="bi bi-check-circle-fill me-1"></i> Save Changes
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
