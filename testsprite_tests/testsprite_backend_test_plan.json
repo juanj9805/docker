@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "get event index list",
+    "description": "Verify GET /Event/Index returns 200 with a list of events rendered in the view under normal conditions."
+  },
+  {
+    "id": "TC002",
+    "title": "post create event success",
+    "description": "Verify POST /Event/Create with valid required fields creates a new event and redirects (302) to /Event/Index where the new event is displayed."
+  },
+  {
+    "id": "TC003",
+    "title": "post create event validation error",
+    "description": "Verify POST /Event/Create with missing required fields returns 200 with validation errors shown in the create form view."
+  },
+  {
+    "id": "TC004",
+    "title": "get edit event form success",
+    "description": "Verify GET /Event/Edit/{id} with existing event id returns 200 with the edit form populated with event data."
+  },
+  {
+    "id": "TC005",
+    "title": "get edit event form not found",
+    "description": "Verify GET /Event/Edit/{id} with non-existent event id returns 404 NotFound."
+  },
+  {
+    "id": "TC006",
+    "title": "post edit event success",
+    "description": "Verify POST /Event/Edit/{id} with valid data updates the event and redirects (302) to /Event/Index where the updated event is shown."
+  },
+  {
+    "id": "TC007",
+    "title": "post edit event validation error",
+    "description": "Verify POST /Event/Edit/{id} with missing required fields returns 200 with validation errors in the edit form view."
+  },
+  {
+    "id": "TC008",
+    "title": "post edit event not found",
+    "description": "Verify POST /Event/Edit/{id} with non-existent event id returns 404 NotFound."
+  },
+  {
+    "id": "TC009",
+    "title": "post delete event success",
+    "description": "Verify POST /Event/Delete/{id} with existing event id deletes the event and redirects (302) to /Event/Index where the event no longer appears."
+  },
+  {
+    "id": "TC010",
+    "title": "post delete event not found",
+    "description": "Verify POST /Event/Delete/{id} with non-existent event id returns 404 NotFound."
+  }
+]

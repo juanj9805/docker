@@ -1,0 +1,86 @@
+version: "2"
+type: backend
+tech_stack:
+  - language: C#
+  - framework: ASP.NET Core MVC (.NET 10)
+  - database: MySQL (Pomelo.EntityFrameworkCore.MySql)
+  - other: Entity Framework Core, Docker
+features:
+  - name: Event Management
+    description: CRUD operations for Event resources via MVC controller
+    files:
+      - Controllers/EventController.cs
+      - Models/Event/Event.cs
+      - Models/Event/CreateEventDto.cs
+      - Models/Event/EditEventDto.cs
+      - Data/MysqlDbContext.cs
+    endpoints:
+      - method: GET
+        path: /Event/Index
+        description: List all events
+        auth_required: false
+        response_schema:
+          "200": List of Event objects rendered in View
+      - method: GET
+        path: /Event/Create
+        description: Render create event form
+        auth_required: false
+        response_schema:
+          "200": Empty create form view
+      - method: POST
+        path: /Event/Create
+        description: Create a new event from form submission
+        auth_required: false
+        request_schema:
+          body:
+            Title: string (required)
+            Img: string (required)
+            Description: string (required)
+            Location: string (required)
+            Status: enum Active|Inactive|Deleted (required)
+        response_schema:
+          "302": Redirect to Index on success
+          "200": View with validation errors
+      - method: GET
+        path: /Event/Edit/{id}
+        description: Render edit form for a specific event
+        auth_required: false
+        response_schema:
+          "200": Edit form view with event data
+          "404": Event not found
+      - method: POST
+        path: /Event/Edit/{id}
+        description: Update an existing event
+        auth_required: false
+        request_schema:
+          body:
+            Id: int
+            Title: string (required)
+            Img: string (required)
+            Description: string (required)
+            Location: string (required)
+            Status: enum Active|Inactive|Deleted (required)
+        response_schema:
+          "302": Redirect to Index on success
+          "404": Event not found
+          "200": View with validation errors
+      - method: POST
+        path: /Event/Delete/{id}
+        description: Delete a specific event by id
+        auth_required: false
+        request_schema:
+          params:
+            id: int
+        response_schema:
+          "302": Redirect to Index on success
+          "404": Event not found
+known_limitations:
+  - issue: No authentication or authorization on any endpoint
+    location: Controllers/EventController.cs
+    impact: Any user can create, edit, or delete events
+  - issue: Hard delete instead of soft delete using the existing Deleted status
+    location: Controllers/EventController.cs:84
+    impact: Data is permanently removed; Deleted status enum value is unused
+  - issue: No pagination on Index listing
+    location: Controllers/EventController.cs:17
+    impact: All events are loaded into memory at once; could fail at scale
