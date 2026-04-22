@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JUAN JOSE\\Desktop\\docker\\vps.csproj": {}
+    "/home/csharp/Escritorio/docker/vps.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JUAN JOSE\\Desktop\\docker\\vps.csproj": {
+    "/home/csharp/Escritorio/docker/vps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JUAN JOSE\\Desktop\\docker\\vps.csproj",
+        "projectUniqueName": "/home/csharp/Escritorio/docker/vps.csproj",
         "projectName": "vps",
-        "projectPath": "C:\\Users\\JUAN JOSE\\Desktop\\docker\\vps.csproj",
-        "packagesPath": "C:\\Users\\JUAN JOSE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JUAN JOSE\\Desktop\\docker\\obj\\",
+        "projectPath": "/home/csharp/Escritorio/docker/vps.csproj",
+        "packagesPath": "/home/csharp/.nuget/packages/",
+        "outputPath": "/home/csharp/Escritorio/docker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\JUAN JOSE\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/csharp/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.200"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net10.0": {
@@ -74,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.106/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

@@ -1,23 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using vps.Data;
 using vps.Models.Event;
+using vps.Services;
+using vps.Response;
 
 namespace vps.Controllers;
 
 public class EventController : Controller
 {
+    private readonly EventService _service;
     private readonly MysqlDbContext _context;
-    public EventController(MysqlDbContext context)
+    public EventController(EventService service, MysqlDbContext context)
     {
         _context = context;
+        _service = service;
     }
     
     [HttpGet]
     public async Task<IActionResult> Index(CancellationToken ct)
     {
-        var events = await _context.Events.ToListAsync(ct);
-        return View(events);
+        var events = _service.GetAll();
+        return View();
     }
     
     [HttpGet]
